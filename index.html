@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Z Gestão | Administração de Condomínios</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        /* =========================================================
+           CONFIGURAÇÕES GERAIS
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --azul: #102c49;
+            --azul-escuro: #071b2e;
+            --azul-claro: #193f62;
+
+            --dourado: #b89a68;
+            --dourado-claro: #d8c39c;
+
+            --fundo: #f7f6f3;
+            --branco: #ffffff;
+
+            --texto: #263443;
+            --cinza: #68727d;
+
+            --sombra: 0 15px 40px rgba(7, 27, 46, 0.10);
+        }
+
+
+        body {
+            font-family: "Montserrat", Arial, sans-serif;
+            background: var(--fundo);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+
+        img {
+            max-width: 100%;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        .container {
+            width: 90%;
+            max-width: 1180px;
+            margin: auto;
+        }
+
+
+
+        /* =========================================================
+           TIPOGRAFIA
+        ========================================================= */
+
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: "Cormorant Garamond", Georgia, serif;
+        }
+
+
+        h2 {
+            font-size: clamp(38px, 5vw, 56px);
+            line-height: 1.05;
+            color: var(--azul);
+            font-weight: 600;
+        }
+
+
+        .titulo-secao {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+
+        .titulo-secao span {
+            display: block;
+            color: var(--dourado);
+            font-family: "Montserrat", sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+
+        .titulo-secao p {
+            max-width: 650px;
+            margin: 18px auto 0;
+            color: var(--cinza);
+            font-size: 15px;
+        }
+
+
+
+        /* =========================================================
+           MENU
+        ========================================================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 16px 6%;
+
+            z-index: 1000;
+
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+        }
+
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--azul);
+            letter-spacing: 1px;
+        }
+
+
+        .logo span {
+            color: var(--dourado);
+        }
+
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+
+        nav ul li a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--texto);
+            transition: 0.3s;
+        }
+
+
+        nav ul li a:hover {
+            color: var(--dourado);
+        }
+
+
+        .botao-menu {
+            background: var(--azul);
+            color: white !important;
+
+            padding: 11px 20px;
+            border-radius: 4px;
+
+            transition: 0.3s;
+        }
+
+
+        .botao-menu:hover {
+            background: var(--dourado);
+            color: white !important;
+        }
+
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 130px 20px 80px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    rgba(7, 27, 46, 0.94),
+                    rgba(16, 44, 73, 0.90)
+                );
+
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(216, 195, 156, 0.15);
+
+            top: -300px;
+            left: -200px;
+        }
+
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(216, 195, 156, 0.12);
+
+            bottom: -300px;
+            right: -200px;
+        }
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 900px;
+
+            animation: aparecer 1.2s ease;
+        }
+
+
+        .hero-pequeno {
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+
+            color: var(--dourado-claro);
+
+            font-weight: 600;
+
+            margin-bottom: 25px;
+        }
+
+
+        .hero h1 {
+
+            font-family: "Cormorant Garamond", Georgia, serif;
+
+            font-size: clamp(52px, 8vw, 86px);
+
+            line-height: 0.98;
+
+            font-weight: 600;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .hero h1 span {
+            color: var(--dourado-claro);
+        }
+
+
+        .hero p {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            font-size: 17px;
+
+            color: rgba(255, 255, 255, 0.82);
+
+            line-height: 1.8;
+        }
+
+
+        .botao {
+
+            display: inline-block;
+
+            margin-top: 35px;
+
+            padding: 15px 30px;
+
+            background: var(--dourado);
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+
+            border-radius: 3px;
+
+            transition: 0.3s;
+        }
+
+
+        .botao:hover {
+            background: var(--dourado-claro);
+            color: var(--azul);
+            transform: translateY(-2px);
+        }
+
+
+
+        /* =========================================================
+           DIFERENCIAIS
+        ========================================================= */
+
+        .diferenciais {
+
+            background: white;
+
+            padding: 55px 0;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        .diferenciais-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 35px;
+        }
+
+
+        .diferencial {
+
+            text-align: center;
+
+            padding: 10px 15px;
+        }
+
+
+        .icone {
+
+            width: 52px;
+            height: 52px;
+
+            margin: 0 auto 18px;
+
+            border: 1px solid var(--dourado);
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: var(--dourado);
+
+            font-size: 20px;
+        }
+
+
+        .diferencial h3 {
+
+            font-family: "Montserrat", sans-serif;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: var(--azul);
+
+            margin-bottom: 8px;
+        }
+
+
+        .diferencial p {
+
+            font-size: 12px;
+
+            color: var(--cinza);
+
+            line-height: 1.7;
+        }
+
+
+
+        /* =========================================================
+           QUEM SOMOS
+        ========================================================= */
+
+        .sobre {
+
+            padding: 110px 0;
+
+            background: var(--fundo);
+        }
+
+
+        .sobre-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+
+        .sobre-texto .linha {
+
+            width: 60px;
+            height: 2px;
+
+            background: var(--dourado);
+
+            margin: 25px 0;
+        }
+
+
+        .sobre-texto p {
+
+            color: var(--cinza);
+
+            font-size: 15px;
+
+            line-height: 1.9;
+
+            margin-bottom: 18px;
+        }
+
+
+        .sobre-destaque {
+
+            background: var(--azul);
+
+            color: white;
+
+            padding: 55px 45px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            box-shadow: var(--sombra);
+        }
+
+
+        .sobre-destaque::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border: 1px solid rgba(216, 195, 156, 0.3);
+
+            border-radius: 50%;
+
+            top: -80px;
+            right: -70px;
+        }
+
+
+        .sobre-destaque .numero {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 100px;
+
+            line-height: 0.8;
+
+            color: var(--dourado-claro);
+
+            margin-bottom: 25px;
+        }
+
+
+        .sobre-destaque h3 {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 35px;
+
+            font-weight: 600;
+
+            margin-bottom: 15px;
+        }
+
+
+        .sobre-destaque p {
+
+            font-size: 14px;
+
+            color: rgba(255,255,255,0.75);
+
+            line-height: 1.8;
+        }
+
+
+
+        /* =========================================================
+           SERVIÇOS
+        ========================================================= */
+
+        .servicos {
+
+            padding: 110px 0;
+
+            background: white;
+        }
+
+
+        .servicos-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .servico {
+
+            background: var(--fundo);
+
+            padding: 38px 30px;
+
+            border: 1px solid #e9e7e2;
+
+            transition: 0.35s;
+        }
+
+
+        .servico:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow: var(--sombra);
+
+            border-color: var(--dourado-claro);
+        }
+
+
+        .servico-numero {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 25px;
+
+            color: var(--dourado);
+
+            margin-bottom: 18px;
+        }
+
+
+        .servico h3 {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 28px;
+
+            color: var(--azul);
+
+            margin-bottom: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .servico p {
+
+            color: var(--cinza);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+
+        /* =========================================================
+           EXPERIÊNCIA
+        ========================================================= */
+
+        .experiencia {
+
+            padding: 110px 0;
+
+            background: var(--azul);
+
+            color: white;
+        }
+
+
+        .experiencia .titulo-secao h2 {
+            color: white;
+        }
+
+
+        .experiencia .titulo-secao p {
+            color: rgba(255,255,255,0.7);
+        }
+
+
+        .numeros {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 30px;
+
+            margin-bottom: 70px;
+        }
+
+
+        .numero-box {
+
+            text-align: center;
+
+            padding: 25px;
+
+            border-right: 1px solid rgba(255,255,255,0.15);
+        }
+
+
+        .numero-box:last-child {
+            border-right: none;
+        }
+
+
+        .numero-box strong {
+
+            display: block;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 70px;
+
+            line-height: 1;
+
+            color: var(--dourado-claro);
+
+            font-weight: 600;
+        }
+
+
+        .numero-box span {
+
+            display: block;
+
+            margin-top: 10px;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            color: rgba(255,255,255,0.7);
+        }
+
+
+        .condominios {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .condominio {
+
+            padding: 17px 20px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            color: rgba(255,255,255,0.8);
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+
+        .condominio:hover {
+
+            border-color: var(--dourado);
+
+            color: white;
+        }
+
+
+
+        /* =========================================================
+           NOSSA GESTÃO
+        ========================================================= */
+
+        .gestao {
+
+            padding: 110px 0;
+
+            background: var(--fundo);
+        }
+
+
+        .gestao-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .gestao-item {
+
+            background: white;
+
+            padding: 40px;
+
+            border-left: 3px solid var(--dourado);
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        }
+
+
+        .gestao-item h3 {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 30px;
+
+            color: var(--azul);
+
+            margin-bottom: 12px;
+        }
+
+
+        .gestao-item p {
+
+            font-size: 13px;
+
+            color: var(--cinza);
+
+            line-height: 1.8;
+        }
+
+
+
+        /* =========================================================
+           EQUIPE
+        ========================================================= */
+
+        .equipe {
+
+            padding: 110px 0;
+
+            background: white;
+        }
+
+
+        .equipe-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 45px;
+
+            max-width: 1050px;
+
+            margin: auto;
+        }
+
+
+        .membro {
+
+            text-align: center;
+        }
+
+
+        .foto-membro {
+
+            width: 230px;
+            height: 230px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            border: 7px solid white;
+
+            box-shadow:
+                0 15px 35px rgba(7,27,46,0.14),
+                0 0 0 1px #e8e4dc;
+
+            background: #f2f2f2;
+        }
+
+
+        .foto-membro img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.5s;
+        }
+
+
+        .membro:hover .foto-membro img {
+
+            transform: scale(1.04);
+        }
+
+
+        .membro h3 {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 31px;
+
+            font-weight: 700;
+
+            color: var(--azul);
+
+            margin-bottom: 2px;
+        }
+
+
+        .membro p {
+
+            font-size: 12px;
+
+            color: var(--cinza);
+
+            line-height: 1.6;
+
+            max-width: 200px;
+
+            margin: auto;
+        }
+
+
+
+        /* =========================================================
+           CONTATO
+        ========================================================= */
+
+        .contato {
+
+            padding: 110px 0;
+
+            background: var(--azul-escuro);
+
+            color: white;
+        }
+
+
+        .contato-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+
+        .contato h2 {
+
+            color: white;
+
+            margin-bottom: 20px;
+        }
+
+
+        .contato-intro {
+
+            color: rgba(255,255,255,0.7);
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            max-width: 520px;
+        }
+
+
+        .contato-info {
+
+            margin-top: 35px;
+        }
+
+
+        .contato-item {
+
+            margin-bottom: 20px;
+
+            padding-bottom: 20px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+
+        .contato-item strong {
+
+            display: block;
+
+            color: var(--dourado-claro);
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 5px;
+        }
+
+
+        .contato-item span {
+
+            color: rgba(255,255,255,0.85);
+
+            font-size: 14px;
+        }
+
+
+        .contato-card {
+
+            background: white;
+
+            padding: 50px;
+
+            color: var(--texto);
+
+            box-shadow: var(--sombra);
+        }
+
+
+        .contato-card h3 {
+
+            font-family: "Cormorant Garamond", serif;
+
+            color: var(--azul);
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .contato-card p {
+
+            color: var(--cinza);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+
+        .botao-whatsapp {
+
+            display: inline-block;
+
+            background: var(--azul);
+
+            color: white;
+
+            padding: 15px 25px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            border-radius: 3px;
+
+            transition: 0.3s;
+        }
+
+
+        .botao-whatsapp:hover {
+
+            background: var(--dourado);
+
+            transform: translateY(-2px);
+        }
+
+
+
+        /* =========================================================
+           RODAPÉ
+        ========================================================= */
+
+        footer {
+
+            background: #041321;
+
+            color: rgba(255,255,255,0.6);
+
+            padding: 35px 6%;
+
+            text-align: center;
+        }
+
+
+        footer .logo {
+
+            color: white;
+
+            font-size: 27px;
+
+            margin-bottom: 8px;
+        }
+
+
+        footer p {
+
+            font-size: 11px;
+
+            line-height: 1.8;
+        }
+
+
+
+        /* =========================================================
+           ANIMAÇÃO
+        ========================================================= */
+
+        @keyframes aparecer {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(25px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+
+
+        /* =========================================================
+           RESPONSIVIDADE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            nav ul {
+                gap: 15px;
+            }
+
+
+            .diferenciais-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+
+            .sobre-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 45px;
+            }
+
+
+            .servicos-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+
+            .equipe-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+
+            .contato-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+            }
+
+        }
+
+
+
+        @media (max-width: 700px) {
+
+            nav {
+
+                padding: 14px 5%;
+            }
+
+
+            nav ul {
+
+                display: none;
+            }
+
+
+            .logo {
+
+                font-size: 29px;
+            }
+
+
+            .hero {
+
+                padding-top: 110px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 54px;
+            }
+
+
+            .hero p {
+
+                font-size: 14px;
+            }
+
+
+            .diferenciais-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .servicos-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .numeros {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .numero-box {
+
+                border-right: none;
+
+                border-bottom: 1px solid rgba(255,255,255,0.15);
+            }
+
+
+            .numero-box:last-child {
+
+                border-bottom: none;
+            }
+
+
+            .condominios {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .gestao-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .equipe-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 55px;
+            }
+
+
+            .foto-membro {
+
+                width: 220px;
+
+                height: 220px;
+            }
+
+
+            .contato-card {
+
+                padding: 35px 25px;
+            }
+
+
+            .sobre,
+            .servicos,
+            .experiencia,
+            .gestao,
+            .equipe,
+            .contato {
+
+                padding: 80px 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         MENU
+    ========================================================= -->
+
+    <nav>
+
+        <a href="#inicio" class="logo">
+            Z <span>GESTÃO</span>
+        </a>
+
+        <ul>
+
+            <li>
+                <a href="#inicio">Início</a>
+            </li>
+
+            <li>
+                <a href="#sobre">Quem Somos</a>
+            </li>
+
+            <li>
+                <a href="#servicos">Serviços</a>
+            </li>
+
+            <li>
+                <a href="#experiencia">Experiência</a>
+            </li>
+
+            <li>
+                <a href="#equipe">Equipe</a>
+            </li>
+
+            <li>
+                <a href="#contato" class="botao-menu">
+                    Fale Conosco
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <div class="hero-pequeno">
+                Administração de Condomínios • Desde 2019
+            </div>
+
+            <h1>
+                Gestão condominial
+                <span>profissional</span>
+                e transparente.
+            </h1>
+
+            <p>
+                Uma gestão próxima, eficiente e responsável,
+                focada na valorização do patrimônio, no controle
+                dos recursos e na boa convivência entre os moradores.
+            </p>
+
+            <a href="#contato" class="botao">
+                FALE CONOSCO
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         DIFERENCIAIS
+    ========================================================= -->
+
+    <section class="diferenciais">
+
+        <div class="container">
+
+            <div class="diferenciais-grid">
+
+
+                <div class="diferencial">
+
+                    <div class="icone">
+                        ✓
+                    </div>
+
+                    <h3>Presença</h3>
+
+                    <p>
+                        Atendimento presencial periódico,
+                        ajustado às necessidades do condomínio.
+                    </p>
+
+                </div>
+
+
+                <div class="diferencial">
+
+                    <div class="icone">
+                        ◇
+                    </div>
+
+                    <h3>Transparência</h3>
+
+                    <p>
+                        Gestão aberta, participativa e acessível
+                        para moradores e conselho.
+                    </p>
+
+                </div>
+
+
+                <div class="diferencial">
+
+                    <div class="icone">
+                        ◆
+                    </div>
+
+                    <h3>Responsabilidade</h3>
+
+                    <p>
+                        Controle dos recursos e acompanhamento
+                        rigoroso das demandas.
+                    </p>
+
+                </div>
+
+
+                <div class="diferencial">
+
+                    <div class="icone">
+                        +
+                    </div>
+
+                    <h3>Proximidade</h3>
+
+                    <p>
+                        Atendimento próximo e acompanhamento
+                        constante da rotina condominial.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         QUEM SOMOS
+    ========================================================= -->
+
+    <section class="sobre" id="sobre">
+
+        <div class="container">
+
+            <div class="sobre-grid">
+
+
+                <div class="sobre-texto">
+
+                    <div class="titulo-secao" style="text-align:left; margin-bottom:20px;">
+
+                        <span>Quem somos</span>
+
+                        <h2>
+                            Uma história construída
+                            com propósito.
+                        </h2>
+
+                    </div>
+
+                    <div class="linha"></div>
+
+                    <p>
+                        A Z Administração de Condomínios LTDA nasceu
+                        de uma história real de dedicação, propósito e
+                        amor pelo ambiente condominial.
+                    </p>
+
+                    <p>
+                        Nossa trajetória começou em 2019, através de uma
+                        iniciativa voluntária como síndica moradora.
+                        A experiência com os desafios reais do condomínio
+                        revelou uma verdadeira vocação para transformar
+                        a gestão condominial em um serviço humanizado,
+                        eficiente e transparente.
+                    </p>
+
+                    <p>
+                        Hoje, unimos a sensibilidade de quem já esteve
+                        do lado dos moradores à capacidade técnica e ao
+                        rigor exigidos pela gestão profissional.
+                    </p>
+
+                </div>
+
+
+                <div class="sobre-destaque">
+
+                    <div class="numero">
+                        2019
+                    </div>
+
+                    <h3>
+                        Experiência que evoluiu
+                        para uma gestão profissional.
+                    </h3>
+
+                    <p>
+                        Nosso propósito é oferecer uma gestão que cuida
+                        da valorização do patrimônio, garante o controle
+                        responsável dos recursos e cultiva a boa
+                        convivência e o respeito dentro do condomínio.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         SERVIÇOS
+    ========================================================= -->
+
+    <section class="servicos" id="servicos">
+
+        <div class="container">
+
+            <div class="titulo-secao">
+
+                <span>O que fazemos</span>
+
+                <h2>
+                    Gestão completa
+                    para o seu condomínio.
+                </h2>
+
+                <p>
+                    Atuamos nas principais frentes necessárias para
+                    garantir organização, controle e eficiência.
+                </p>
+
+            </div>
+
+
+            <div class="servicos-grid">
+
+
+                <div class="servico">
+
+                    <div class="servico-numero">
+                        01
+                    </div>
+
+                    <h3>
+                        Gestão Administrativa
+                    </h3>
+
+                    <p>
+                        Organização dos processos, cumprimento da
+                        Convenção Condominial, Regimento Interno e
+                        deliberações das Assembleias.
+                    </p>
+
+                </div>
+
+
+                <div class="servico">
+
+                    <div class="servico-numero">
+                        02
+                    </div>
+
+                    <h3>
+                        Gestão Financeira
+                    </h3>
+
+                    <p>
+                        Controle do orçamento, acompanhamento das
+                        contas, gestão tributária e transparência
+                        financeira.
+                    </p>
+
+                </div>
+
+
+                <div class="servico">
+
+                    <div class="servico-numero">
+                        03
+                    </div>
+
+                    <h3>
+                        Gestão Operacional
+                    </h3>
+
+                    <p>
+                        Supervisão das rotinas operacionais e
+                        acompanhamento dos processos para melhorar
+                        o funcionamento do condomínio.
+                    </p>
+
+                </div>
+
+
+                <div class="servico">
+
+                    <div class="servico-numero">
+                        04
+                    </div>
+
+                    <h3>
+                        Manutenção
+                    </h3>
+
+                    <p>
+                        Acompanhamento de manutenções obrigatórias,
+                        AVCB, limpeza de caixas d'água, dedetização,
+                        laudos e demais exigências técnicas.
+                    </p>
+
+                </div>
+
+
+                <div class="servico">
+
+                    <div class="servico-numero">
+                        05
+                    </div>
+
+                    <h3>
+                        Assembleias
+                    </h3>
+
+                    <p>
+                        Organização, mediação e condução técnica
+                        de Assembleias Gerais Ordinárias e
+                        Extraordinárias.
+                    </p>
+
+                </div>
+
+
+                <div class="servico">
+
+                    <div class="servico-numero">
+                        06
+                    </div>
+
+                    <h3>
+                        Gestão de Conflitos
+                    </h3>
+
+                    <p>
+                        Atuação imparcial e preventiva na resolução
+                        de divergências internas, promovendo um
+                        ambiente harmonioso.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         EXPERIÊNCIA
+    ========================================================= -->
+
+    <section class="experiencia" id="experiencia">
+
+        <div class="container">
+
+            <div class="titulo-secao">
+
+                <span>Experiência atual</span>
+
+                <h2>
+                    Gestão baseada em
+                    experiência e proximidade.
+                </h2>
+
+                <p>
+                    Atualmente administramos 12 condomínios e
+                    empreendimentos, oferecendo uma gestão próxima,
+                    eficiente e personalizada.
+                </p>
+
+            </div>
+
+
+            <div class="numeros">
+
+
+                <div class="numero-box">
+
+                    <strong>12</strong>
+
+                    <span>
+                        Condomínios administrados
+                    </span>
+
+                </div>
+
+
+                <div class="numero-box">
+
+                    <strong>2019</strong>
+
+                    <span>
+                        Início da trajetória
+                    </span>
+
+                </div>
+
+
+                <div class="numero-box">
+
+                    <strong>24h</strong>
+
+                    <span>
+                        Contingência para emergências
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="condominios">
+
+
+                <div class="condominio">
+                    Condomínio Serena — 188 unidades
+                </div>
+
+                <div class="condominio">
+                    Condomínio Vargem Pequena — 99 unidades
+                </div>
+
+                <div class="condominio">
+                    Residencial Olga Becker — 70 unidades
+                </div>
+
+                <div class="condominio">
+                    Condomínio Central Park — 65 unidades
+                </div>
+
+                <div class="condominio">
+                    Jardim do Oriente — 58 unidades
+                </div>
+
+                <div class="condominio">
+                    Condomínio Residencial Vox Jurerê — 44 unidades
+                </div>
+
+                <div class="condominio">
+                    José Alves de Brito — 37 casas
+                </div>
+
+                <div class="condominio">
+                    Condomínio Nelson Antunes — 24 unidades
+                </div>
+
+                <div class="condominio">
+                    Condomínio Residencial Uni Jurerê — 20 unidades e 3 lojas comerciais
+                </div>
+
+                <div class="condominio">
+                    Condomínio Residencial Cássia — 16 unidades
+                </div>
+
+                <div class="condominio">
+                    Morada do Sol — 12 unidades
+                </div>
+
+                <div class="condominio">
+                    Condomínio Residencial Portal Robless — 6 unidades
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         NOSSA GESTÃO
+    ========================================================= -->
+
+    <section class="gestao">
+
+        <div class="container">
+
+            <div class="titulo-secao">
+
+                <span>Nosso compromisso</span>
+
+                <h2>
+                    Uma gestão pensada
+                    para cuidar.
+                </h2>
+
+            </div>
+
+
+            <div class="gestao-grid">
+
+
+                <div class="gestao-item">
+
+                    <h3>
+                        Presença e Proximidade
+                    </h3>
+
+                    <p>
+                        Atendimento presencial de 2 a 3 vezes por
+                        semana, ajustado conforme a demanda do
+                        condomínio, garantindo acompanhamento
+                        próximo e resolução ágil das rotinas.
+                    </p>
+
+                </div>
+
+
+                <div class="gestao-item">
+
+                    <h3>
+                        Transparência
+                    </h3>
+
+                    <p>
+                        Modelo de gestão aberto, participativo e de
+                        fácil acesso para conselho e moradores,
+                        com relatórios mensais claros, detalhados
+                        e organizados.
+                    </p>
+
+                </div>
+
+
+                <div class="gestao-item">
+
+                    <h3>
+                        Manutenção Preventiva
+                    </h3>
+
+                    <p>
+                        Planejamento focado em ações preventivas
+                        e melhorias contínuas para preservação e
+                        valorização do patrimônio.
+                    </p>
+
+                </div>
+
+
+                <div class="gestao-item">
+
+                    <h3>
+                        Mediação Imparcial
+                    </h3>
+
+                    <p>
+                        Atuação neutra, técnica e equilibrada na
+                        resolução de divergências internas,
+                        promovendo harmonia na convivência.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         EQUIPE
+    ========================================================= -->
+
+    <section class="equipe" id="equipe">
+
+        <div class="container">
+
+            <div class="titulo-secao">
+
+                <span>Conheça nossa equipe</span>
+
+                <h2>
+                    Pessoas por trás
+                    da gestão.
+                </h2>
+
+                <p>
+                    Uma equipe preparada para oferecer uma gestão
+                    próxima, organizada e profissional.
+                </p>
+
+            </div>
+
+
+            <div class="equipe-grid">
+
+
+                <!-- ZAIRA -->
+
+                <div class="membro">
+
+                    <div class="foto-membro">
+
+                        <img
+                            src="imagens/zaira.jpg"
+                            alt="Zaira - Síndica Profissional"
+                        >
+
+                    </div>
+
+                    <h3>
+                        ZAIRA
+                    </h3>
+
+                    <p>
+                        Síndica Profissional
+                    </p>
+
+                </div>
+
+
+
+                <!-- EVERTON -->
+
+                <div class="membro">
+
+                    <div class="foto-membro">
+
+                        <img
+                            src="imagens/everton.jpg"
+                            alt="Everton - Síndico Profissional"
+                        >
+
+                    </div>
+
+                    <h3>
+                        EVERTON
+                    </h3>
+
+                    <p>
+                        Síndico Profissional
+                    </p>
+
+                </div>
+
+
+
+                <!-- LUCAS -->
+
+                <div class="membro">
+
+                    <div class="foto-membro">
+
+                        <img
+                            src="imagens/lucas.jpg"
+                            alt="Lucas - Analista de Gestão e Operações"
+                        >
+
+                    </div>
+
+                    <h3>
+                        LUCAS
+                    </h3>
+
+                    <p>
+                        Analista de Gestão e Operações
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         CONTATO
+    ========================================================= -->
+
+    <section class="contato" id="contato">
+
+        <div class="container">
+
+            <div class="contato-grid">
+
+
+                <div>
+
+                    <div class="titulo-secao" style="text-align:left; margin-bottom:0;">
+
+                        <span>Fale conosco</span>
+
+                        <h2>
+                            Vamos conversar
+                            sobre seu condomínio?
+                        </h2>
+
+                    </div>
+
+
+                    <p class="contato-intro">
+
+                        Estamos à disposição para apresentar um plano
+                        de ação personalizado, referências diretas e
+                        esclarecer quaisquer dúvidas.
+
+                    </p>
+
+
+                    <div class="contato-info">
+
+
+                        <div class="contato-item">
+
+                            <strong>
+                                WhatsApp
+                            </strong>
+
+                            <span>
+                                (48) 99909-4889
+                            </span>
+
+                        </div>
+
+
+                        <div class="contato-item">
+
+                            <strong>
+                                E-mail
+                            </strong>
+
+                            <span>
+                                z.admdecondominios@gmail.com
+                            </span>
+
+                        </div>
+
+
+                        <div class="contato-item">
+
+                            <strong>
+                                Endereço
+                            </strong>
+
+                            <span>
+                                Serv. Germinio João dos Santos, 107 - Jurerê
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="contato-card">
+
+                    <h3>
+                        Z Administração
+                        de Condomínios
+                    </h3>
+
+                    <p>
+                        Gestão condominial profissional, próxima,
+                        transparente e responsável.
+                    </p>
+
+                    <p>
+                        Entre em contato conosco pelo WhatsApp
+                        e conheça nossa forma de trabalhar.
+                    </p>
+
+
+                    <a
+                        href="https://wa.me/5548999094889"
+                        target="_blank"
+                        class="botao-whatsapp"
+                    >
+                        FALAR PELO WHATSAPP
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         RODAPÉ
+    ========================================================= -->
+
+    <footer>
+
+        <div class="logo">
+            Z <span>GESTÃO</span>
+        </div>
+
+        <p>
+            Z Administração de Condomínios LTDA
+        </p>
+
+        <p>
+            CNPJ: 50.019.273/0001-56
+        </p>
+
+        <p style="margin-top:10px;">
+            © 2026 Z Administração de Condomínios.
+            Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+
+
+</body>
+
+</html>
